@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Servidores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <style>
+        /* Seus estilos personalizados aqui */
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" id="home" href="home.html">Home</a>
+                <a class="nav-item nav-link" id="jogador" href="jogador.html">Perfil</a>
+                <a class="nav-item nav-link" id="lista" href="lista.html">Lista</a>
+            </div>
+        </div>
+    </nav>
+</head>
+<body >
+    
+    <div class="container">
+    <h2 style="margin-top: 1vw;">Servidores Adicionados</h2>
+    <ul id="added-server-list">
+        <ul id="server-list" class="list-group">
+            
+            <li class="list-group-item">
+              servidor1
+              <button type="button" class="close" onClick="deleteServer()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+          
+    </ul>    </ul>
+    <button class="btn btn-primary" id="remove-server-btn">Remover Servidor</button>
+    <button class="btn btn-primary"id="export-btn">Exportar server.dat</button>
+    </div>
+
+    <script type="text/javascript">
+        function deleteServer(serverId) {
+            fetch("/delete-server", {
+                method: "POST",
+                body: JSON.stringify({ serverId: serverId }),
+            }).then((_res) => {
+                window.location.href = "/lista";
+            });
+        }
+    
+        document.getElementById("remove-server-btn").addEventListener("click", function() {
+            // Aqui você pode adicionar a lógica para remover servidores da lista
+            alert("Funcionalidade de remover servidor não implementada ainda!");
+        });
+    
+        document.getElementById("export-btn").addEventListener("click", function() {
+            // Aqui você pode adicionar a lógica para exportar os servidores para um arquivo server.dat
+            alert("Funcionalidade de exportar servidores para server.dat não implementada ainda!");
+        });
+    </script>
+
+</body>
+</html>

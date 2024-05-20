@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Servidores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" id="home" href="home.html">Home</a>
+                <a class="nav-item nav-link" id="jogador" href="jogador.html">Jogador</a>
+                <a class="nav-item nav-link" id="lista" href="lista.html">Lista</a>
+            </div>
+        </div>
+    </nav>
+</head>
+<body >
+    <div class="container">
+        <h2 style="margin-top: 1vw;">Pesquisar Servidores</h2>
+        <form>
+            <label for="country">Selecionar País:</label>
+            <select id="country" class="form-control">
+                <option value="all">Todos</option>
+                <option value="us">Estados Unidos</option>
+                <option value="uk">Reino Unido</option>
+                <option value="fr">França</option>
+                <option value="de">Alemanha</option>
+                 <option value="jp">Japão</option>
+            </select>
+            <button style="margin-top: 1vw;" class="btn btn-primary" id="show-servers-btn">Mostrar Servidores</button>
+        </form>
+        <ul id="server-list" class="list-group">
+            <!-- Aqui você pode preencher dinamicamente a lista de servidores com base na seleção do país -->
+            
+        </ul>
+    </div>
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+
+    <script>
+        
+
+        document.getElementById("show-servers-btn").addEventListener("click", function() {
+        var selectedCountry = document.getElementById("country").value;
+        // Redireciona para a página de servidores com base no país selecionado
+        window.location.href = "servidores.html?country=" + selectedCountry;
+    });
+    </script>
+    
+</body>
+</html>

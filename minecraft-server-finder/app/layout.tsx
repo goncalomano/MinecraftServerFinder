@@ -25,8 +25,10 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossOrigin="anonymous" />
       </head>
       <body className={inter.className}>
-          <NavBar />
-        {children}
+        <NavBar />
+        <div className="p-4">
+          {children}
+        </div>
 
 
         <script

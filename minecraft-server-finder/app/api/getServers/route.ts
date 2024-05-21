@@ -8,7 +8,7 @@ export async function GET(
   req: NextApiRequest,
 ) {
   try {
-    const res =  await fetch('https://minecraft-server-list.com/country/ukraine/');
+    const res =  await fetch('https://minecraft-server-list.com/country/united-states/');
     const html = await res.text();
 
      return Response.json({ html });

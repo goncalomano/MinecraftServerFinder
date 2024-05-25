@@ -2,9 +2,9 @@
 import fetch from 'node-fetch';
 import cheerio from 'cheerio'; // Import Cheerio library
 
-export const fetchList = async () => {
+export const fetchList = async (country:string) => {
     try {
-        const res = await fetch('http://localhost:3000/api/getServers');
+        const res = await fetch(`http://localhost:3000/api/getServers?country=${country}`);
         const html = await res.text();
 
         const $ = cheerio.load(html);

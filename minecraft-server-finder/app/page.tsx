@@ -6,20 +6,19 @@ import { ServerComponent } from "@/components/server";
 import { useContext, useState } from "react";
 import nbt from 'prismarine-nbt';
 
-
 export default function Home() {
   const { serverList, addToServerList, removeFromServerList } = useContext(ServerListContext);
   const [selectedCountry, setSelectedCountry] = useState('');
 
-  const handleChange = (event:any) => {
+  const handleChange = (event) => {
     setSelectedCountry(event.target.value);
   };
 
-  const [ipArray, setIpArray] = useState(['']);
+  const [ipArray, setIpArray] = useState([]);
   const fetchServers = async () => {
-    setIpArray(await fetchList(selectedCountry) || []);
+    const fetchedList = await fetchList(selectedCountry) || [];
+    setIpArray(fetchedList.filter(ip => ip)); // Filter out empty strings
   };
-
 
   const handleGenerate = async () => {
     const serversNBT = {
@@ -39,25 +38,26 @@ export default function Home() {
         },
       },
     };
-  
+
     const nbtBuffer = await nbt.writeUncompressed(serversNBT);
     const blob = new Blob([nbtBuffer], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
-  
+
     // Create a link element
     const a = document.createElement('a');
     a.href = url;
     a.download = 'servers.dat';
-  
+
     // Append the link to the body
     document.body.appendChild(a);
-  
+
     // Programmatically click the link to download the file
     a.click();
-  
+
     // Remove the link from the body
     document.body.removeChild(a);
   };
+
   return (
     <div>
       <h1>Explore Servers</h1>
@@ -65,6 +65,7 @@ export default function Home() {
         <div className="flex flex-col items-start">
           <p>Choose a country</p>
           <select className="border-black border-2" name="minecraft-servers" id="country-select" onChange={handleChange}>
+            <option value="">Select a country</option>
             <option value="albania">Albania</option>
             <option value="andorra">Andorra</option>
             <option value="argentina">Argentina</option>
@@ -164,7 +165,9 @@ export default function Home() {
         ))}
       </div>
       <div className="w-full flex flex-col gap-4 mt-5">
-        {ipArray.map((ip, index) => <ServerComponent key={index} serverIP={ip} />)}
+        {ipArray.length > 0 && ipArray.map((ip, index) => (
+          ip && <ServerComponent key={index} serverIP={ip} />
+        ))}
       </div>
     </div>
   );

@@ -17,8 +17,7 @@ export const NavBar = () => {
 
             <div className="navbar-nav">
                 <a className="nav-item nav-link" id="home" href="/">Home</a>
-                <a className="nav-item nav-link" id="jogador" href="jogador.html">Jogador</a>
-                <a className="nav-item nav-link" id="lista" href="/list">Lista</a>
+                <a className="nav-item nav-link" id="jogador" href="/player">Jogador</a>
             </div>
     </nav>
 

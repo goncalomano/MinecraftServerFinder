@@ -1,7 +1,8 @@
 import { getServerData } from "@/actions/getServerData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Open_Sans } from 'next/font/google'
+import ServerListContext from "./list/ServerListProviders";
 
 const openSans = Open_Sans({
     weight: ['300', '400', '500', '600', '700', '800'],
@@ -18,6 +19,8 @@ export const ServerComponent = ({ serverIP }: ServerProps) => {
     const [serverMotd, setServerMotd] = useState("");
     const [onlinePlayers, setOnlinePlayers] = useState(0);
     const [maxPlayers, setMaxPlayers] = useState(0);
+
+    const { serverList, addToServerList, removeFromServerList } = useContext(ServerListContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,7 +44,7 @@ export const ServerComponent = ({ serverIP }: ServerProps) => {
             </div>
             <div className="flex flex-col gap-2 w-1/2 items-end">
                 <p className={`font-bold ${openSans.className}`}>Online Players: {onlinePlayers} / {maxPlayers}</p>
-                <button className="bg-green-300 font-bold text-white px-4 py-2 rounded-lg">Add to list</button>
+                <button className="bg-green-300 font-bold text-white px-4 py-2 rounded-lg" onClick={() =>addToServerList(serverIP)}>Add to list</button>
             </div>
         </div>
     );

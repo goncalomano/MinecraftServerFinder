@@ -1,7 +1,9 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/navbar";
+import { ServerListProvider } from "@/components/list/ServerListProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ServerListProvider>
     <html lang="en">
       <head>
         <title>
@@ -44,5 +47,6 @@ export default function RootLayout({
         ></script>
       </body>
     </html>
+    </ServerListProvider>
   );
 }
